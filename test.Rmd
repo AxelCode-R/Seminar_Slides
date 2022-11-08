@@ -1,0 +1,102 @@
+---
+title: "Particel Swarm Optimization (PSO)"
+output:
+  ioslides_presentation
+date: '2022-11-07'
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(dplyr)
+library(data.table)
+
+for(src in list.files("R/")){
+  sourde(paste0("R/", src))
+}
+```
+
+
+## Agenda
+
+- Entstehung
+- Standard PSO
+- Klassifizierung
+- Beispiel 2D
+- Anwendungen
+
+
+## Entstehung
+
+> - Erfunden von Russell Eberhardt und James Kennedy in 1995
+<div class="columns-2"> 
+<div class="centered">
+![](img/Eberhardt.png){width=180px} 
+<div/>
+<div/>
+<div class="columns-2"> 
+<div class="centered">
+![](img/Kennedy.jpg){width=200px} 
+<div/>
+<div/>
+> - Analogie zu natürlichen Vogelschwärmen
+> - PSO ist eine naturanaloge Metaheuristik
+> - Erste Anwendung in der Teilchenphysik
+
+<div class="notes">
+- Metaheuristik ist Optimierungsveerfahren
+- (bild1) Russell C. Eberhart professor of Electrical and Computer Engineering
+- (bild2) James Kennedy (social psychologist)
+</div>
+
+
+
+
+
+## Standard PSO (SPSO)
+> - Minimierungsproblem: Kostenfunktion $f: \mathbb{R}^n \rightarrow \mathbb{R}$
+> - Partikel bewegen sich im $\mathbb{R}^n$
+> - Partikel teilen sich Informationen
+> - Partikel ändern Ihre Geschwindigkeit abhängig von 3 Faktoren
+> - Iteriere bis das Minimum erreicht ist
+
+## SPSO Formel
+> -1 Initialisiere zufällige Positionen $\vec{p}^{0, n+1}$ und Geschwindigkeiten $\vec{v}^{0, n+1}$ der Partikel $x$
+> -2 Evaluiere die Kostenfunktion mit der Position jedes Partikels
+> -3 Speicher die bisher beste Position in $g_{best}$
+> -4 Speicher die bisher beste Position pro Partikel in $p_{best}$
+> -5 Zeitschritt $n \rightarrow n+1$ pro Partikel $x$:
+$$
+  \vec{v}^{x, n+1} 
+$$
+
+- Initialisiere Particle $\vec{p}_0$ und $\vec{v}_0$
+- Schwarm
+
+
+
+
+
+## Historie
+
+This is an R Markdown presentation. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document.
+
+## Slide with Bullets
+
+- Bullet 1
+- Bullet 2
+- Bullet 3
+
+## Slide with R Output
+
+```{r cars, echo = TRUE}
+summary(cars)
+```
+
+## Slide with Plot
+
+```{r pressure}
+plot(pressure)
+```
+
