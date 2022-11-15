@@ -1,7 +1,8 @@
 ---
 title: "Particel Swarm Optimization (PSO)"
 output:
-  ioslides_presentation
+  ioslides_presentation:
+    css: style.css
 date: '2022-11-07'
 ---
 
@@ -20,14 +21,13 @@ for(src in list.files("R/")){
 
 - Entstehung
 - Standard PSO
-- Klassifizierung
 - Beispiel 2D
 - Anwendungen
 
 
 ## Entstehung
 
-> - Erfunden von Russell Eberhardt und James Kennedy in 1995
+- Erfunden von Russell Eberhardt und James Kennedy in 1995
 <div class="columns-2"> 
 <div class="centered">
 ![](img/Eberhardt.png){width=180px} 
@@ -38,9 +38,9 @@ for(src in list.files("R/")){
 ![](img/Kennedy.jpg){width=200px} 
 <div/>
 <div/>
-> - Analogie zu natürlichen Vogelschwärmen
-> - PSO ist eine naturanaloge Metaheuristik
-> - Erste Anwendung in der Teilchenphysik
+- Analogie zu natürlichen Vogelschwärmen
+- PSO ist eine naturanaloge Metaheuristik
+- Erste Anwendung in der Teilchenphysik
 
 <div class="notes">
 - Metaheuristik ist Optimierungsveerfahren
@@ -53,50 +53,117 @@ for(src in list.files("R/")){
 
 
 ## Standard PSO (SPSO)
-> - Minimierungsproblem: Kostenfunktion $f: \mathbb{R}^n \rightarrow \mathbb{R}$
-> - Partikel bewegen sich im $\mathbb{R}^n$
-> - Partikel teilen sich Informationen
-> - Partikel ändern Ihre Geschwindigkeit abhängig von 3 Faktoren
-> - Iteriere bis das Minimum erreicht ist
+- Minimierungsproblem: Kostenfunktion $f: \mathbb{R}^n \rightarrow \mathbb{R}$
+- Partikel bewegen sich im $\mathbb{R}^n$
+- Partikel teilen sich Informationen
+- Partikel haben ein Gedächtnis
+- Partikel ändern Ihre Geschwindigkeit abhängig von 3 Faktoren
+- Iteriere bis das Minimum erreicht ist
+
+
 
 ## SPSO Formel
-> -1 Initialisiere zufällige Positionen $\vec{p}^{0, n+1}$ und Geschwindigkeiten $\vec{v}^{0, n+1}$ der Partikel $x$
-> -2 Evaluiere die Kostenfunktion mit der Position jedes Partikels
-> -3 Speicher die bisher beste Position in $g_{best}$
-> -4 Speicher die bisher beste Position pro Partikel in $p_{best}$
-> -5 Zeitschritt $n \rightarrow n+1$ pro Partikel $x$:
+
+1. Initialisiere zufällige Positionen $x^{k, i}$ und Geschwindigkeiten $v^{k, i}$ der Partikel $k$ in Iteration $i=0$
+
+2. Evaluiere die Kostenfunktion mit der Position jedes Partikels
+
+3. Speicher die bisher beste Position in $g_{best}^i$
+
+4. Speicher die bisher beste Position pro Partikel in $p_{best}^{k,i}$
+
+5. Iterationsschritt $i \rightarrow i+1$ pro Partikel $k$:
 $$
-  \vec{v}^{x, n+1} 
+\begin{aligned}
+  v^{k, i+1} &= w \cdot v^{k, i} + c_p \cdot r_1 \cdot (p_{best}^{k,i}-x^{k,i}) + c_g \cdot r_2 \cdot (g_{best}^{k,i}-x^{k,i}) \\
+  x^{k, i+1} &= x^{k, i} + v^{k, i+1}
+\end{aligned}
 $$
-
-- Initialisiere Particle $\vec{p}_0$ und $\vec{v}_0$
-- Schwarm
+6. Wiederhole Schritt 2-5 bis die Abbruchbedingung erreicht ist
 
 
 
+## SPSO Zeitschritt
+$$
+\begin{aligned}
+  v^{k, i+1} &= w \cdot v^{k, i} + c_p \cdot r_1 \cdot (p_{best}^{k,i}-x^{k,i}) + c_g \cdot r_2 \cdot (g_{best}^{k,i}-x^{k,i}) \\
+  x^{k, i+1} &= x^{k, i} + v^{k, i+1}
+\end{aligned}
+$$
+\
+<div class="centered">
+![](img/PSO_richtungsvekoren.png)
+</div>
+
+<div class="notes">
+- bild: https://www.intechopen.com/chapters/69586
+</div>
 
 
-## Historie
 
-This is an R Markdown presentation. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+## Einfaches Beispiel
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document.
+Zielfunktion:  
+$$
+\begin{aligned}
+  f(x, y) =& -20\cdot e^{-0.2 \cdot \sqrt{0.5 \cdot ((x-1)^2 + (y-1)^2)}} \\
+  & \ - e^{0.5 \cdot ( cos(2\cdot \pi \cdot x) + cos(2\cdot \pi \cdot y))} + e + 20
+\end{aligned}
+$$
+Aufgabe:  
+Minimiere $f(x,y)$ mit $-10 \leq x \leq 10$ und $-10 \leq y \leq 10$
 
-## Slide with Bullets
+[PSO App](PSO App)
 
-- Bullet 1
-- Bullet 2
-- Bullet 3
 
-## Slide with R Output
+## Nebenbedingungen
 
-```{r cars, echo = TRUE}
-summary(cars)
-```
+Beispiele:  
 
-## Slide with Plot
+- Summe soll 100% ergeben
 
-```{r pressure}
-plot(pressure)
-```
+- Summe der Gewichte von Elementen mit Ausprägung A soll weniger als 20% betragen
+
+- Kosten sollen kleiner als 100 Euro sein
+
+- Weniger als 20 Elemente sollen ungleich Null sein
+
+- ...
+
+Methoden:  
+
+- Penalty
+
+- Verwerfen von ungültigen Lösungen
+
+- Reparieren von ungültigen Lösungen
+
+
+
+## Nebenbedingungen mit Penalty Methode
+
+Alte Zielfunktion: $f(x)$
+
+Bruch von Nebenbedingungen: $g(x)$
+
+Neue Zielfunktion: $z(x) = f(x) + g(x)$
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
