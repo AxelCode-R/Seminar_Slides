@@ -140,7 +140,7 @@ Methoden:
 
 
 
-## Nebenbedingungen mit Penalty Methode
+## Penalty Methode
 
 Alte Zielfunktion: $f(x)$
 
@@ -148,10 +148,21 @@ Bruch von Nebenbedingungen: $g(x)$
 
 Neue Zielfunktion: $z(x) = f(x) + g(x)$
 
-
-
-
-
+Beispiel für gängige Nebenbedingungen:
+$$
+  A^T \times x \geq b_0
+$$
+Dann könnte $g(x)$ wie folgt aussehen:
+$$
+  g(x) = ||\vec{\lambda}( A^T \times x - b_0 )||_2^2
+$$
+mit elementweiser Anwendung von
+$$
+  \lambda(x) = \begin{cases}
+  0 &\text{ if }x \geq 0\\
+  x &\text{ if }x < 0
+  \end{cases}
+$$
 
 
 

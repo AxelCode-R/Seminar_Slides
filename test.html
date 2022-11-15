@@ -3258,7 +3258,26 @@ slide:not(.current) .plotly.html-widget{
 <li><p>Penalty</p></li>
 <li><p>Verwerfen von ungültigen Lösungen</p></li>
 <li><p>Reparieren von ungültigen Lösungen</p></li>
-</ul></article></slide>
+</ul>
+
+</article></slide><slide class=""><hgroup><h2>Nebenbedingungen mit Penalty Methode</h2></hgroup><article  id="nebenbedingungen-mit-penalty-methode">
+
+<p>Alte Zielfunktion: \(f(x)\)</p>
+
+<p>Bruch von Nebenbedingungen: \(g(x)\)</p>
+
+<p>Neue Zielfunktion: \(z(x) = f(x) + g(x)\)</p>
+
+<p>Beispiel für gängige Nebenbedingungen: \[
+  A^T \times x \geq b_0
+\] Dann könnte \(g(x)\) wie folgt aussehen: \[
+  g(x) = ||\vec{\lambda}( A^T \times x - b_0 )||_2^2
+\] mit elementweiser Anwendung von \[
+  \lambda(x) = \begin{cases}
+  0 &amp;\text{ if }x \geq 0\\
+  x &amp;\text{ if }x &lt; 0
+  \end{cases}
+\]</p></article></slide>
 
 
   <slide class="backdrop"></slide>
