@@ -1,9 +1,10 @@
 ---
-title: "Particel Swarm Optimization (PSO)"
+title: "Partikelschwarm- optimierung (PSO)"
 output:
   ioslides_presentation:
     css: style.css
 date: '2022-11-07'
+author: Axel Roth
 ---
 
 ```{r setup, include=FALSE}
@@ -52,19 +53,28 @@ for(src in list.files("R/")){
 
 
 
-## Standard PSO (SPSO)
-- Minimierungsproblem: Kostenfunktion $f: \mathbb{R}^n \rightarrow \mathbb{R}$
-- Partikel bewegen sich im $\mathbb{R}^n$
+## Partikelschwarmoptimierung Grundlagen
+Optimierungsproblem:  
+
+-  Lösungsraum $\Omega$ (z.b. $\mathbb{R}^n$)
+-  Zielfunktion: $f: \Omega \rightarrow \mathbb{R}$
+-  Gesucht ist $\omega \in \Omega$ für das $f(\omega) = min\{f(x)|x \in \Omega\}$ gilt
+\
+\
+
+Vehalten des PSO:  
+
+- Partikel bewegen sich im $\mathbb{R}^n$ iterativ
 - Partikel teilen sich Informationen
 - Partikel haben ein Gedächtnis
-- Partikel ändern Ihre Geschwindigkeit abhängig von 3 Faktoren
-- Iteriere bis das Minimum erreicht ist
+- Partikel ändern ihren Richtungsvektor abhängig von 3 Faktoren
+- Iteriere bis die Abbruchbedingung erreicht ist
 
 
 
-## SPSO Formel
+## Standard PSO (SPSO)
 
-1. Initialisiere zufällige Positionen $x^{k, i}$ und Geschwindigkeiten $v^{k, i}$ der Partikel $k$ in Iteration $i=0$
+1. Initialisiere zufällige Positionen $x^{k, i}$ und Richtungsvektoren $v^{k, i}$ der Partikel $k$ in Iteration $i=0$
 
 2. Evaluiere die Kostenfunktion mit der Position jedes Partikels
 
@@ -113,7 +123,7 @@ $$
 Aufgabe:  
 Minimiere $f(x,y)$ mit $-10 \leq x \leq 10$ und $-10 \leq y \leq 10$
 
-[PSO App](PSO App)
+[PSO App](https://acrocode.shinyapps.io/PSO-App/)
 
 
 ## Nebenbedingungen
@@ -121,30 +131,24 @@ Minimiere $f(x,y)$ mit $-10 \leq x \leq 10$ und $-10 \leq y \leq 10$
 Beispiele:  
 
 - Summe soll 100% ergeben
-
 - Summe der Gewichte von Elementen mit Ausprägung A soll weniger als 20% betragen
-
 - Kosten sollen kleiner als 100 Euro sein
-
 - Weniger als 20 Elemente sollen ungleich Null sein
-
 - ...
 
 Methoden:  
 
 - Penalty
-
 - Verwerfen von ungültigen Lösungen
-
 - Reparieren von ungültigen Lösungen
 
 
 
 ## Penalty Methode
 
-Alte Zielfunktion: $f(x)$
+Alte Zielfunktion: $f(x)$ mit $f: \mathbb{R}^n \rightarrow \mathbb{R}$
 
-Bruch von Nebenbedingungen: $g(x)$
+Bruch von Nebenbedingungen: $g(x)$ mit $g(x) \geq 0 \ \forall x \in \mathbb{R}^n$
 
 Neue Zielfunktion: $z(x) = f(x) + g(x)$
 
@@ -154,7 +158,7 @@ $$
 $$
 Dann könnte $g(x)$ wie folgt aussehen:
 $$
-  g(x) = ||\vec{\lambda}( A^T \times x - b_0 )||_2^2
+g(x) = ||\vec{\lambda}( A^T \times x - b_0 )||_2^2
 $$
 mit elementweiser Anwendung von
 $$
