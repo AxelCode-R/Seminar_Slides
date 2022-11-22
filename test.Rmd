@@ -5,12 +5,15 @@ output:
     css: style.css
 date: '2022-11-07'
 author: Axel Roth
+editor_options: 
+  chunk_output_type: console
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 library(dplyr)
 library(data.table)
+library(plotly)
 
 for(src in list.files("R/")){
   sourde(paste0("R/", src))
@@ -171,14 +174,74 @@ $$
 
 
 
+## Konvergenz
+Convergence Analysis for Particle
+Swarm Optimization
 
+Berthold Immanuel Schmitt
 
+"Obwohl das PSO in zahlreichen realen Anwendungen verwendet
+wird, haben theoretische Betrachtungen bisher nur einige wenige Teilaspekte
+des Algorithmus erklärt. Ein solcher Aspekt, mit dem sich viele Wissenschaftler
+auseinandersetzen, ist das Phänomen der Konvergenz des Partikelschwarms.
+Das bedeutet, dass die Partikel gegen einen Punkt im Suchraum
+konvergieren. Insbesondere konnten notwendige und hinreichende Bedingungen
+an die Schwarmparameter ermittelt werden, unter denen Konvergenz gewährleistet
+ist. Allerdings ist bis jetzt kein theoretisches Resultat über die Qualität
+dieses Grenzwertes bekannt, das für den unmodizierten PSO-Algorithmus
+in einer allgemeineren Situation als beispielsweise nur für genau eine Zielfunktion
+bewiesen werden konnte."
 
+f(x) = x^2/(x^4+1)
 
+seite 96
 
+## Konvergenz Beispiel 1D
+- Konstantes $p_{best}=5$ und $g_{best}=7$
+- Partikel sind unabhängig
+- Hyperparameter $w=0.3$, $c_p=1$, $c_g=1$ 
+- Initialisierte Position und Richtungsvektor $X^0=V^0=0$
+```{r, echo=F, cache=T, out.height="350px"}
+set.seed(0)
+w <- 0.3
+c_p <- 1
+c_g <- 1
 
+P <- 5
+G <- 7
 
+X <- 0
+V <- 0
 
+N <- 1000000
+save_X <- rep(NA, N)
+for(i in 1:N){
+  V <- w*V+c_p*runif(1)*(P-X)+c_g*runif(1)*(G-X)
+  X <- X + V
+  save_X[i] <- X
+}
 
+mu <- (c_p*P+c_g*G)/(c_p+c_g)
+#f <- 1-((1+w-(c_p+c_g)/2)^2+1/12*(c_p^2+c_g^2)-w)*(1-w)-w^3
 
+f <- -(c_p+c_g)*w^2+(1/6*c_p^2+1/6*c_g^2+1/2*c_p*c_g)*w+c_p+c_g-1/3*c_p^2-1/3*c_g-1/2*c_p*c_g
+
+var <- 1/6 * ((c_p*c_g)/(c_p+c_g))^2*(G-P)^2*(1+w)/f
+
+x_ticks <- seq(1,length(save_X), length.out=100)
+X_mu <- sapply(x_ticks, function(z){mean(save_X[1:z])})
+X_var <- sapply(x_ticks, function(z){var(save_X[1:z])})
+
+p1 <- plot_ly(x=x_ticks, y=X_mu, type="scatter", mode="lines", name="est_mu(X)") %>% 
+  add_trace(x=x_ticks, y=mu, name="mu(X)") %>% 
+  layout(yaxis=list(title="X"), xaxis=list(title="iter"))
+
+p2 <- plot_ly(x=x_ticks, y=X_var, type="scatter", mode="lines", name="est_var(X)") %>% 
+  add_trace(x=x_ticks, y=var, name="var(X)") %>% 
+  layout(yaxis=list(title="X"), xaxis=list(title="iter"))
+
+subplot(p1, p2, nrows=2, titleX = T, titleY = T, shareX = T) %>% 
+  config(displayModeBar = FALSE)
+```
+$f=$ `r f`
 
