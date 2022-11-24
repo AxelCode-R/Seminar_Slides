@@ -188,6 +188,7 @@ Gomez and Levy function (modified)
 Convergence Analysis for Particle
 Swarm Optimization (von Berthold Schmitt)
 
+<div style="resize:both; overflow:hidden; width:10px; height:10px; border:solid 1px grey;">
 "Obwohl das PSO in zahlreichen realen Anwendungen verwendet
 wird, haben theoretische Betrachtungen bisher nur einige wenige Teilaspekte
 des Algorithmus erklärt. Ein solcher Aspekt, mit dem sich viele Wissenschaftler
@@ -199,9 +200,10 @@ ist. Allerdings ist bis jetzt kein theoretisches Resultat über die Qualität
 dieses Grenzwertes bekannt, das für den unmodizierten PSO-Algorithmus
 in einer allgemeineren Situation als beispielsweise nur für genau eine Zielfunktion
 bewiesen werden konnte."
+</div>
 
 - Alles stark simplifiziert: Standard PSO und $p_{best}=g_{best}=const$
-- Es kann gezeigt werden, das folgende Terme fast sicher konvergieren: $\lim\limits_{n \rightarrow \infty}E(X^n)=\mu$ und $\lim\limits_{n \rightarrow \infty}Var(X^n) = \sigma^2$
+- Es kann gezeigt werden, das folgende Terme konvergieren: $\lim\limits_{n \rightarrow \infty}E(X^n)=\mu$ und $\lim\limits_{n \rightarrow \infty}Var(X^n) = \sigma^2$
 - Es kann keine Aussage über die Qualität dieses Grenzwertes gemacht werden.
 - Es kann bewiesen werden, das wenn der Schwarm im $\mathbb{R}$ konvergiert, das es fast sicher ein locales Minimum ist.
 
