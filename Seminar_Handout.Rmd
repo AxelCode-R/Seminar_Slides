@@ -1,0 +1,50 @@
+---
+title: "Partikelschwarmoptimierung"
+output: pdf_document
+date: "2022-11-24"
+author: Axel Roth
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### Kurzbeschreibung
+
+Die Partikelschwarmoptimirung (PSO) wurde von Eberhardt und Kennedy im Jahre 1995 veröffentlicht und sollte einen im Raum fliegenden Vogelschwarm emitieren. Innerhalb des Schwarmes sollen Informationen über gute Futterstellen geteilt werden, wodurch eine Schwarmintelligenz entsteht. Genau deshlab gehört es auch zu den naturanalogen Optimierungsverfahren, das von diversen wisschenschaftlichen Bereichen adaptiert wurde, um Optimierungsprobleme zu lösen. Dabei wird das PSO vorallem dort eingesetzt, wo keine direkte Lösung mittels der Mathematik möglich ist oder dies zu kompliziert wäre. Das PSO ist sozusagen ein Allzwecktool, welches für beliebige minimierungsprobleme Probleme der Form $f:\mathbb{R}^N \rightarrow \mathbb{R}$ und beliebigen Nebenbedingungen angewendet werden kann, da es lediglich die Funktion $f$ auswerten können muss. Im Vergleich zu anderen Optimierungsverfahren die solche Probleme lösen können, gehört das PSO und seine Variationen zu den am weitesten verbreiteten in diesem Gebiet. 
+
+### Standard PSO
+Das Standard PSO besteht im Kern aus zwei Gleichungen, welche die Bewegung des Partikels $k$ pro iteration $i$ beschreibt. Dabei bezieht sich die Richtungsänderung auf drei Faktoren: Die bisher beste Position $g_{best}^{i}$ welche besucht wurde, Die bisher beste Position $p_{best}^{k,i}$, jedes Partikels, welche besucht wurde und dem Richtungsvektor $v^{k, i}$ der letzten Iteration. Die Güte einer Position wird durch die evaluierung der Zielfunktion $f$ ermittelt. Der Iterationsschrit $i \rightarrow i+1$ des Standard PSO, mit Positionen $x^{k, i}$ und Richtungsvektoren $v^{k, i}$ ist
+$$
+\begin{aligned}
+  v^{k, i+1} &= w \cdot v^{k, i} + c_p \cdot r_1^{k,i} \cdot (p_{best}^{k,i}-x^{k,i}) + c_g \cdot r_2^{k,i} \cdot (g_{best}^{k,i}-x^{k,i}) \\
+  x^{k, i+1} &= x^{k, i} + v^{k, i+1}
+\end{aligned}
+$$
+mit beispielhaften Hyperparametern $w=0.5$, $c_p=2$ und $c_g=2$. Die Koeffizienten $r_1$ und $r_2$ sind zufällig generierte Zahlen in $(0,1)$. Wie man sehen kann, besteht das PSO nur aus primären Operatoren, weshalb es auch gerne in Mini-Computern wie Raspberry-Pis angewendet werden, da die benötigte Rechenkraft und der Speicherplatz sehr gering sind.
+\newpage
+
+### Nachteile des PSO:  
+
+- keine Garantie für die Qualität der Lösung
+- Hyperparameter sind zu wählen
+- zusätzliche Information über das explizite Problem kann nur schwer berücksichtigt werden
+
+### Vorteile des PSO:  
+- ist sehr effizient implementierbar (kleine Datenstruktur und nur Basis-Operatoren)
+- simple Anwendbar auch bei komplexen Problemen und Nebenbedingungen
+- kann diskrete Probleme lösen
+- es gibt viele Varianten, die deutlich besser sind als das Standard PSO
+- Allzweck-Werkzeug für Optimierungsprobleme
+
+
+### 2D Simulation
+Um ein Gefühl für die mächtigkeit des PSOs zu bekommen, wurde eine WebApp erstellt in der Sie eigene 2D Optimierungsprobleme mit Nebenbedingungen von verschiedenen PSO Varianten lösen lassen können.
+WebApp: https://acrocode.shinyapps.io/PSO-App/
+
+
+
+
+
+
+
