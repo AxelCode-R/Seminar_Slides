@@ -43,6 +43,8 @@ Um ein Gefühl für die mächtigkeit des PSOs zu bekommen, wurde eine WebApp ers
 WebApp: https://acrocode.shinyapps.io/PSO-App/
 
 
+### Anwendung in der Finanzmathematik
+Da in der Finanzmathematik meistens ein diskretes Problem gelöst werden muss, hat das PSO dort einen großen nutzen. Zum Beispiel kann es dort eingesetzt werden, um stetige Lösungen zu runden und dabei die Nebenbedingungen nicht zu verletzten oder auch um Probleme direkt zu lösen, für die es keinen analytischen Ansatz gibt. Mehr darüber kann in der Ausarbeitung "Asset Allocation using Particle Swarm Optimization in R" unter https://axelcode-r.github.io/Master-Thesis/ erfahren werden.
 
 
 
