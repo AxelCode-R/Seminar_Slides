@@ -40,7 +40,7 @@ mit beispielhaften Hyperparametern $w=0.5$, $c_p=2$ und $c_g=2$. Die Koeffizient
 
 ### 2D Simulation
 Um ein Gefühl für die mächtigkeit des PSOs zu bekommen, wurde eine WebApp erstellt in der Sie eigene 2D Optimierungsprobleme mit Nebenbedingungen von verschiedenen PSO Varianten lösen lassen können.
-WebApp: https://acrocode.shinyapps.io/PSO-App/
+WebApp: https://acrocode.shinyapps.io/ParticleSwarmOptimizationApp/
 
 
 ### Anwendung in der Finanzmathematik

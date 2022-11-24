@@ -130,7 +130,7 @@ $$
 Aufgabe:  
 Minimiere $f(x,y)$ mit $-10 \leq x \leq 10$ und $-10 \leq y \leq 10$
 
-[PSO App](https://acrocode.shinyapps.io/PSO-App/)
+[PSO App](https://acrocode.shinyapps.io/ParticleSwarmOptimizationApp/)
 
 
 ## Nebenbedingungen
@@ -180,7 +180,7 @@ Gomez and Levy function (modified)
 
 [wiki constrained tests problems](https://en.wikipedia.org/wiki/Test_functions_for_optimization)  
 
-[PSO App](https://acrocode.shinyapps.io/PSO-App/)  
+[PSO App](https://acrocode.shinyapps.io/ParticleSwarmOptimizationApp/)  
 
 
 
