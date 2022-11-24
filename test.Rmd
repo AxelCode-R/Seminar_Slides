@@ -26,7 +26,11 @@ for(src in list.files("R/")){
 - Entstehung
 - Standard PSO
 - Beispiel 2D
-- Anwendungen
+- Nebenbedingungen
+- Beispiel 2D mit Nebenbedingungen
+- Konvergenz
+- Vor- und Nachteile
+- Fazit
 
 
 ## Entstehung
@@ -171,14 +175,18 @@ $$
   \end{cases}
 $$
 
+## Penalty Methode Beispiel 2D
+Gomez and Levy function (modified)  
+
+[wiki constrained tests problems](https://en.wikipedia.org/wiki/Test_functions_for_optimization)  
+
+[PSO App](https://acrocode.shinyapps.io/PSO-App/)  
 
 
 
 ## Konvergenz
 Convergence Analysis for Particle
-Swarm Optimization
-
-Berthold Immanuel Schmitt
+Swarm Optimization (von Berthold Schmitt)
 
 "Obwohl das PSO in zahlreichen realen Anwendungen verwendet
 wird, haben theoretische Betrachtungen bisher nur einige wenige Teilaspekte
@@ -192,9 +200,15 @@ dieses Grenzwertes bekannt, das für den unmodizierten PSO-Algorithmus
 in einer allgemeineren Situation als beispielsweise nur für genau eine Zielfunktion
 bewiesen werden konnte."
 
-f(x) = x^2/(x^4+1)
+- Alles stark simplifiziert: Standard PSO und $p_{best}=g_{best}=const$
+- Es kann gezeigt werden, das folgende Terme fast sicher konvergieren: $\lim\limits_{n \rightarrow \infty}E(X^n)=\mu$ und $\lim\limits_{n \rightarrow \infty}Var(X^n) = \sigma^2$
+- Es kann keine Aussage über die Qualität dieses Grenzwertes gemacht werden.
+- Es kann bewiesen werden, das wenn der Schwarm im $\mathbb{R}$ konvergiert, das es fast sicher ein locales Minimum ist.
 
-seite 96
+
+## Interpretation der Konvergenz Aussagen
+
+
 
 ## Konvergenz Beispiel 1D
 - Konstantes $p_{best}=5$ und $g_{best}=7$
@@ -244,4 +258,42 @@ subplot(p1, p2, nrows=2, titleX = T, titleY = T, shareX = T) %>%
   config(displayModeBar = FALSE)
 ```
 $f=$ `r f`
+
+## Vor- und Nachteile
+Nachteile:
+- keine Garantie für die Qualität der Lösung
+- Hyperparameter
+- zusätzliche Information über das explizite Problem kann nur schwer berücksichtigt werden
+
+
+Vorteile:
+- ist sehr effizient implementierbar (kleine Datenstruktur und nur Basis-Operatoren)
+- simple Anwendbar auch bei komplexen Problemen und Nebenbedingungen
+- kann diskrete Probleme lösen
+- es gibt viele Varianten, die deutlich besser sind als das Standard PSO
+- Allzweck-Werkzeug für Optimierungsprobleme
+
+
+## Fazit
+
+PSO nur verwenden, wenn keine analytische Lösung möglich ist oder diese zu aufwändig wäre
+
+![](img/birds.jpg){width=180px} 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
