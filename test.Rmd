@@ -248,11 +248,11 @@ X_var <- sapply(x_ticks, function(z){var(save_X[1:z])})
 
 p1 <- plot_ly(x=x_ticks, y=X_mu, type="scatter", mode="lines", name="est_mu(X)") %>% 
   add_trace(x=x_ticks, y=mu, name="mu(X)") %>% 
-  layout(yaxis=list(title="X"), xaxis=list(title="iter"))
+  layout(yaxis=list(title="mu"), xaxis=list(title="iter"))
 
 p2 <- plot_ly(x=x_ticks, y=X_var, type="scatter", mode="lines", name="est_var(X)") %>% 
   add_trace(x=x_ticks, y=var, name="var(X)") %>% 
-  layout(yaxis=list(title="X"), xaxis=list(title="iter"))
+  layout(yaxis=list(title="var"), xaxis=list(title="iter"))
 
 subplot(p1, p2, nrows=2, titleX = T, titleY = T, shareX = T) %>% 
   config(displayModeBar = FALSE)
@@ -260,13 +260,16 @@ subplot(p1, p2, nrows=2, titleX = T, titleY = T, shareX = T) %>%
 $f=$ `r f`
 
 ## Vor- und Nachteile
-Nachteile:
+Nachteile:  
+
 - keine Garantie für die Qualität der Lösung
 - Hyperparameter
 - zusätzliche Information über das explizite Problem kann nur schwer berücksichtigt werden
+\
+\
 
+Vorteile:  
 
-Vorteile:
 - ist sehr effizient implementierbar (kleine Datenstruktur und nur Basis-Operatoren)
 - simple Anwendbar auch bei komplexen Problemen und Nebenbedingungen
 - kann diskrete Probleme lösen
@@ -277,8 +280,11 @@ Vorteile:
 ## Fazit
 
 PSO nur verwenden, wenn keine analytische Lösung möglich ist oder diese zu aufwändig wäre
-
-![](img/birds.jpg){width=180px} 
+\
+\
+<p align="center">
+![](img/birds.jpg){width=350px} 
+</p>
 
 
 
