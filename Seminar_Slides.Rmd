@@ -159,6 +159,8 @@ Bruch von Nebenbedingungen: $g(x)$ mit $g(x) \geq 0 \ \forall x \in \mathbb{R}^n
 
 Neue Zielfunktion: $z(x) = f(x) + g(x)$
 
+\
+
 Beispiel für gängige Nebenbedingungen:
 $$
   A^T \times x \geq b_0
