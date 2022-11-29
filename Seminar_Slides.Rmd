@@ -85,9 +85,9 @@ Vehalten des PSO:
 
 2. Evaluiere die Kostenfunktion mit der Position jedes Partikels
 
-3. Speicher die bisher beste Position in $g_{best}^i$
+3. Speicher die bisher beste Position pro Partikel in $p_{best}^{k,i}$
 
-4. Speicher die bisher beste Position pro Partikel in $p_{best}^{k,i}$
+4. Speicher die bisher beste Position aller Partikel in $g_{best}^i$
 
 5. Iterationsschritt $i \rightarrow i+1$ pro Partikel $k$:
 $$
@@ -221,7 +221,7 @@ $$
   x^{i+1} &= x^{i} + v^{i+1}
 \end{aligned}
 $$
-Theorem 1: Gegeben $w$, $c_p$, $c_g \geq 0$ und es gilt $0 \leq w <1$ und $0 < c_p + c_g < 4\cdot(1+w)$ dann konvergiert der iterative Prozess $E(x^i)_{i \in \mathbb{N}}$ garantiert gegen
+Theorem 1: Gegeben $w$, $c_p$, $c_g \geq 0$ und es gilt $0 \leq w <1$ und $0 < c_p + c_g < 4\cdot(1+w)$ dann konvergiert der iterative Prozess $E(x^i)_{i \in \mathbb{N}}$ fast sicher gegen
 $$
 \mu := \frac{c_p \cdot p_{best} + c_g \cdot g_{best}}{c_p +c_g}
 $$
@@ -230,10 +230,15 @@ Theorem 2: Gegeben $w$, $c_p$, $c_g \geq 0$ und es gilt $0 \leq w <1$, $c_p + c_
 $$
   g := 1-((1+w-\frac{c_p+c_g}{2})^2+\frac{1}{12}\cdot (c_p^2+c_g^2)-w)\cdot (1-w)-w^3
 $$
-dann konvergiert der iterative Prozess $Var(x^i)_{i \in \mathbb{N}}$ garantiert gegen
+dann konvergiert der iterative Prozess $Var(x^i)_{i \in \mathbb{N}}$ fast sicher gegen
 $$
   \sigma^2 := \frac{1}{6} \cdot (\frac{c_p \cdot c_g}{c_p + c_g})^2\cdot (g_{best}-p_{best})^2\cdot (1-w) / g
 $$
+<div class="notes">
+Dissertation Berthold:
+3.5.2 Convergence Analysis
+</div>
+
 
 ## Konvergenz Beispiel 1D
 - Konstantes $p_{best}=5$ und $g_{best}=7$
